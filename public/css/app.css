@@ -1,0 +1,84 @@
+.profile {
+  color: #fff !important;
+  text-align: center;
+}
+
+.nav .nav-item .input-group {
+  width: 200px;
+}
+
+.nav .nav-item {
+  position: sticky;
+}
+.main-sidebar {
+  position: fixed;
+}
+.logo {
+  position: fixed;
+}
+
+.main-header .logo {
+  height: 50px;
+}
+.active-cyan-4 {
+  float: left;
+  margin-top: 8px;
+}
+.user-panel .image img {
+  max-width: 80px;
+}
+.control-profile {
+  word-spacing: 15px;
+}
+.content-wrapper {
+  padding-top: 50px;
+}
+
+.page-block {
+  background: #fff;
+  min-height: 400px;
+  padding: 20px;
+}
+.nav-tabs > li > a {
+  color: #666d73;
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li>a.active,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+  border: none;
+  border-bottom: 2px solid green;
+}
+.form-group.required .control-label:before {
+  content:"*";
+  color:red;
+  margin-right: 3px;
+}
+
+.member_photo {
+  position: relative;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+#member_photo:before {
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  margin-left: -16px;
+  cursor: pointer;
+  height: 30px;
+  width: 32px;
+  font-size: 32px;
+}
+
+#member_photo:focus,
+#member_photo:hover {
+  outline: none;
+}
+
+#user-photo {
+  max-width: 225px;
+  max-height: 225px;
+  width: 225px;
+}
