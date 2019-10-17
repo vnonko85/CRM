@@ -13,6 +13,3 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');
-
-// mix.copyDirectory('node_modules/croppic/assets', 'public/assets/croppic');
-mix.scripts(["node_modules/croppic/assets/js/main.js"], 'public/js/app.js', './');

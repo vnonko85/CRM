@@ -26,7 +26,7 @@
                 <br>
                 <div id="cropContainerEyecandy"></div>
                 <div class="form-group member_photo">
-                    <img src="{{ asset(Auth::user()->getPhoto()) }}" name="photo" class="img-circle croppedImg" id="user-photo" alt="User Image">
+                    <img src="{{ asset(Auth::user()->getPhoto()) }}" class="img-circle croppedImg" id="user-photo" alt="User Image">
                     <i class="fa fa-camera" id="member_photo"></i>
                  </div>
                 <div class="form-group required">
@@ -35,13 +35,19 @@
                 </div>
                 <div class="form-group required">
                     <label class="control-label" for="name-input">Фамилия:</label>
-                    <input type="text" name="surname" class="form-control" id="name-input" value="{{ Auth::user()->surname }}">
+                    <input type="text" name="surname" class="form-control" id="surname-input" value="{{ Auth::user()->surname }}">
                 </div>
+
                 <div class="form-group required">
                     <label class="control-label" for="name-input">Дата рождения:</label>
-                    <input type="text" name="surname" class="form-control" id="name-input" value="{{ Auth::user()->surname }}">
                 </div>
-                <div class="form-group">
+                <div class="input-group date" id="datepicker">
+                    <input type="text" name="birth" class="form-control" value="{{ Auth::user()->birth }}">
+                    <span class="input-group-addon">
+                        <span class="glyphicon-calendar glyphicon"></span>
+                    </span>
+                </div>
+                <div class="form-group"><br>
                     <input type="submit" class="btn btn-primary" value="Сохранить">
                 </div>
                 <input type="hidden" name="photo" id="input-photo">
@@ -63,19 +69,23 @@
 @section('adminlte_css')
     <link rel="stylesheet"
           href="{{ asset('vendor/adminlte/dist/css/skins/skin-' . config('adminlte.skin', 'blue') . '.min.css')}} ">
-    <link rel="stylesheet" href="{{ asset('css/croppic.css')}} ">
+    <link rel="stylesheet" href="{{ asset('css/croppic.css')}}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet"/>
+    <!-- <link href="{{ asset('vendor/eonasdan/bootstrap-datepicker/build/css/bootstrap-datepicker.min.css')}}" rel="stylesheet"/> -->
+
     @stack('css')
     @yield('css')
 @stop
 
 @section('adminlte_js')
     <script src="{{ asset('js/croppic.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+   <!--  <script src="{{ asset('vendor/eonasdan/bootstrap-datepicker/build/js/bootstrap-datepicker.min.js')}}"></script> -->
     <script>
         var croppicContainerEyecandyOptions = {
             processInline: true,
             cropUrl:'{{ route("crop.photo") }}',
             modal: true,
-            // imgEyecandy:true,
             loaderHtml:'<div class="loader bubblingG"><span id="bubblingG_1"></span><span id="bubblingG_2"></span><span id="bubblingG_3"></span></div> ',
             customUploadButtonId: "member_photo",
             outputUrlId: 'user-photo',
@@ -83,12 +93,7 @@
             modalWidth: 350,
             onAfterImgCrop: function() {
                 $('#input-photo').val($('#user-photo').attr('src'));
-
             }
-            // onBeforeImgUpload:  function(event){ 
-            //     var output = document.getElementById('user-photo');
-            //     output.src = URL.createObjectURL(event.target.files[0]);
-            // },
         }
         
         var cropContainerEyecandy = new Croppic('cropContainerEyecandy', croppicContainerEyecandyOptions);
@@ -100,6 +105,16 @@
             position:relative;
         }
     </style>
+    
+    <script type="text/javascript">
+       $('#datepicker').datepicker({
+               weekStart: 1,
+               daysOfWeekHighlighted: "6,0",
+               autoclose: true,
+               format: 'yyyy-mm-dd',
+           });
+    </script>
+
     @stack('js')
     @yield('js')
 @stop
